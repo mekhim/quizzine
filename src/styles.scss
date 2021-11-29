@@ -1,4 +1,9 @@
 $primary-color : #F2BC79;
 
+:root{
+  --primary-bg-color: white;
+  --primary-color: #ffc500;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
