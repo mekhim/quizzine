@@ -1,0 +1,8 @@
+<h2 mat-dialog-title *ngIf="isUpdateMode">Update {{ form.get('username')?.value}}</h2>
+<h2 mat-dialog-title *ngIf="!isUpdateMode">Create new user</h2>
+
+<mat-dialog-content>
+  <form novalidate [formGroup]="form">
+
+  </form>
+</mat-dialog-content>

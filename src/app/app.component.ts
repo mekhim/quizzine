@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'quizzine';
+
+  constructor() {
+  }
+
+  ngOnInit(): void{
+  }
+
+  get appName(){
+    return "Quizzine";
+  }
 }

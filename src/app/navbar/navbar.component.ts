@@ -16,5 +16,4 @@ export class NavbarComponent implements OnInit {
   get appName() : string {
     return "Quizzine";
   }
-
 }
