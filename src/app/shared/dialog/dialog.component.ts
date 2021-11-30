@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {Question} from "../types/question.type";
+import {User} from '../types/user.type';
 
 @Component({
-  selector: 'nwt-add-dialog',
+  selector: 'quizzine-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: [ './dialog.component.scss' ]
 })
@@ -12,14 +12,14 @@ export class DialogComponent implements OnInit {
   /**
    * Component constructor
    */
-  constructor(private _dialogRef: MatDialogRef<DialogComponent, Question>, @Optional() @Inject(MAT_DIALOG_DATA) private _question: Question) {
+  constructor(private _dialogRef: MatDialogRef<DialogComponent, User>, @Optional() @Inject(MAT_DIALOG_DATA) private _user: User) {
   }
 
   /**
-   * Returns person passed in dialog open
+   * Returns user passed in dialog open
    */
-  get question(): Question {
-    return this._question;
+  get user(): User {
+    return this._user;
   }
 
   /**
@@ -36,10 +36,10 @@ export class DialogComponent implements OnInit {
   }
 
   /**
-   * Function to close the modal and send person to parent
+   * Function to close the modal and send user to parent
    */
-  onSave(question: Question): void {
-    this._dialogRef.close(question);
+  onSave(user: User): void {
+    this._dialogRef.close(user);
   }
 }
 

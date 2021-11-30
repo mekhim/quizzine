@@ -39,7 +39,7 @@
       <tr>
         <td>
           <mat-form-field class="" [class.mgb15]="form.get('password')?.dirty && form.get('password')?.invalid">
-            <input matInput placeholder="Password" formControlName="password" minlength="2" required name="password" />
+            <input matInput placeholder="Password" formControlName="password" minlength="8" required name="password" />
             <mat-error *ngIf="form.get('password')?.dirty && form.get('password')?.hasError('password')">
               Password is <strong>required</strong>
             </mat-error>
@@ -52,7 +52,7 @@
       <tr>
         <td>
           <mat-form-field class="" [class.mgb15]="form.get('confirmPassword')?.dirty && form.get('confirmPassword')?.invalid">
-            <input matInput placeholder="ConfirmPassword" formControlName="confirmPassword" minlength="2" required name="confirmPassword" />
+            <input matInput placeholder="ConfirmPassword" formControlName="confirmPassword" minlength="8" required name="confirmPassword" />
             <mat-error *ngIf="form.get('confirmPassword')?.dirty && form.get('confirmPassword')?.hasError('confirmPassword')">
               ConfirmPassword is <strong>required</strong>
             </mat-error>
@@ -68,6 +68,6 @@
 
 
 <mat-dialog-actions align="end">
-  <button mat-button type="button" (click)="cancel()">Cancel</button>
+  <button mat-button type="button" [routerLink]="['/home']" (click)="cancel()">Cancel</button>
   <button mat-button color="primary" type="submit" (click)="submit(form.value)" [disabled]="form.invalid">Save</button>
 </mat-dialog-actions>

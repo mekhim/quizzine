@@ -7,7 +7,7 @@ import {filter, mergeMap} from "rxjs/operators";
 
 
 @Component({
-  selector: 'user',
+  selector: 'quizzine-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })

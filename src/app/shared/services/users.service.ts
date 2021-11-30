@@ -26,7 +26,7 @@ export class UsersService {
     }
 
     // @ts-ignore
-    Object.keys(environment.backend.endpointsUser).forEach(k =>this._backendURL[k] = `${baseUrl}${environment.backend.endpointsUser[k]}`);
+    Object.keys(environment.backend.endpoints).forEach(k =>this._backendURL[k] = `${baseUrl}${environment.backend.endpoints[k]}`);
 
   }
 
@@ -86,7 +86,5 @@ export class UsersService {
   private _options(headerList: object = {}): any {
     return { headers: new HttpHeaders(Object.assign({ 'Content-Type': 'application/json' }, headerList)) };
   }
-
-
 }
 

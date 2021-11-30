@@ -6,7 +6,7 @@ import {filter, mergeMap} from "rxjs/operators";
 import {merge} from "rxjs";
 
 @Component({
-  selector: 'app-question',
+  selector: 'quizzine-question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss']
 })
