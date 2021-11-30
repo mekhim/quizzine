@@ -5,7 +5,7 @@ import {Question} from "../types/question.type";
 @Component({
   selector: 'nwt-add-dialog',
   templateUrl: './dialog.component.html',
-  styleUrls: [ './dialog.component.css' ]
+  styleUrls: [ './dialog.component.scss' ]
 })
 export class DialogComponent implements OnInit {
 

@@ -18,22 +18,24 @@ import { QuizzComponent } from './quizz/quizz.component';
 import {HttpClientModule} from "@angular/common/http";
 import { DialogComponent } from './shared/dialog/dialog.component';
 import { UserComponent } from './user/user.component';
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
     AppComponent,NavbarComponent, FormComponent, QuestionComponent, HomeComponent, FormLoginComponent, QuizzComponent, DialogComponent, UserComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDialogModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatInputModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

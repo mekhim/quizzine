@@ -10,6 +10,7 @@ import {CustomValidators} from "./custom_validators";
 export class FormComponent implements OnInit {
   private readonly _form: FormGroup;
   private readonly _isUpdateMode: boolean;
+  model: any;
 
   constructor() {
     this._form = this._buildForm();
@@ -34,4 +35,11 @@ export class FormComponent implements OnInit {
     })
   }
 
+  cancel() {
+    
+  }
+
+  submit(value: any) {
+    
+  }
 }

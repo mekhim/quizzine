@@ -1,1 +1,41 @@
-<p>form-login works!</p>
+<mat-dialog-content>
+  <form novalidate [formGroup]="form">
+    <table>
+      <tr>
+        <td>
+          <mat-form-field class="" [class.mgb15]="form.get('username')?.dirty && form.get('username')?.invalid">
+          <input matInput placeholder="Username" formControlName="username" minlength="2" required name="username">
+            <mat-error *ngIf="form.get('username')?.dirty && form.get('username')?.hasError('required') ">
+              Username is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="form.get('username')?.dirty && form.get('username')?.hasError('minlength') ">
+              Username is <strong>2 chars min</strong>
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field class="" [class.mgb15]="form.get('password')?.dirty && form.get('password')?.invalid">
+          <input type="password" matInput placeholder="Password" formControlName="password" minlength="2" required name="password">
+            <mat-error *ngIf="form.get('password')?.dirty && form.get('password')?.hasError('required') ">
+              Password is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="form.get('password')?.dirty && form.get('password')?.hasError('minlength') ">
+              Password is <strong>2 chars min</strong>
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="cancel()">Cancel</button>
+  <button mat-button color="primary" type="submit" (click)="submit(form.value)" [disabled]="form.invalid">Valider</button>
+</mat-dialog-actions>
+
+<br/>
+
+<span [routerLink]="['/signUp']">Vous n'avez pas de compte ?</span>
