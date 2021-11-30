@@ -19,10 +19,11 @@ import {HttpClientModule} from "@angular/common/http";
 import { DialogComponent } from './shared/dialog/dialog.component';
 import { UserComponent } from './user/user.component';
 import {MatInputModule} from "@angular/material/input";
+import { DialogLoginComponent } from './dialog-login/dialog-login.component';
 
 @NgModule({
   declarations: [
-    AppComponent,NavbarComponent, FormComponent, QuestionComponent, HomeComponent, FormLoginComponent, QuizzComponent, DialogComponent, UserComponent
+    AppComponent,NavbarComponent, FormComponent, QuestionComponent, HomeComponent, FormLoginComponent, QuizzComponent, DialogComponent, UserComponent, DialogLoginComponent
   ],
     imports: [
         BrowserModule,

@@ -3,7 +3,6 @@ import {User} from "../types/user.type";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {DialogComponent} from "../dialog/dialog.component";
-import {filter, mergeMap} from "rxjs/operators";
 
 @Component({
   selector: 'quizzine-form-login',
@@ -63,11 +62,12 @@ export class FormLoginComponent implements OnInit {
   private _buildForm() {
     return new FormGroup({
       username: new FormControl('',Validators.compose([Validators.required,Validators.minLength(2)])),
-      password: new FormControl('',Validators.compose([Validators.required,Validators.minLength(2)])),
+      password: new FormControl('',Validators.compose([Validators.required,Validators.minLength(8)])),
     })
   }
 
   showDialog(): void {
+    this.cancel();
   this._dialogStatus = 'active';
 
   this._userDialog = this._dialog.open(DialogComponent, {

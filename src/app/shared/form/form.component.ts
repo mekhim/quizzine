@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CustomValidators} from "./custom_validators";
 import {User} from "../types/user.type";
+import {DialogComponent} from "../dialog/dialog.component";
 
 @Component({
   selector: 'quizzine-form',
@@ -9,6 +10,7 @@ import {User} from "../types/user.type";
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
+
   private readonly _form: FormGroup;
   private readonly _isUpdateMode: boolean;
   private _model: User;
