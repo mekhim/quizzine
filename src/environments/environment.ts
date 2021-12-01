@@ -12,10 +12,14 @@ export const environment = {
       allUsers: '/users',
       oneUser: '/users/:id',
       allQuestions: '/questions',
-      oneQuestion: '/questions/:id'
+      oneQuestion: '/questions/:id',
+      allTags: '/tags',
+      oneTag: '/tags/:name',
     }
+
   }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

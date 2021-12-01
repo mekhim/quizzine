@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'quizzine-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
 
@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get appName() : string {
+  get appName() {
     return "Quizzine";
   }
 }

@@ -1,9 +1,15 @@
+@import "../../vars";
+
 mat-toolbar.gnok-navbar {
-  background-color: var(--primary-bg-color);
-  color: var(--primary-color);
+  background-color: $primary-bg-color;
+  color: $primary-color;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
   width: 100%;
   vertical-align: middle;
+  position: fixed;
+  height: 8%;
+  top:0;
+  z-index: 1;
 }
 
 mat-toolbar .flex {
@@ -17,9 +23,11 @@ mat-toolbar .flex {
 }
 
 .quizzine-button {
-  background-color: var(--primary-color);
+  background-color: $primary-color;
   color: white;
   border-radius: 15px;
   border-style: none;
   height: 40px;
 }
+
+

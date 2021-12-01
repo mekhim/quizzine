@@ -4,11 +4,13 @@ export const environment = {
     protocol: 'http',
     host: '0.0.0.0',
     port: '3000',
-    endpointsUser: {
+    endpoints: {
       allUsers: '/users',
       oneUser: '/users/:id',
       allQuestions: '/questions',
-      oneQuestion: '/questions/:id'
+      oneQuestion: '/questions/:id',
+      allTags: '/tags',
+      oneTag: '/tags/:name',
     }
 
   }

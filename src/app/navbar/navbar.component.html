@@ -1,0 +1,17 @@
+<mat-toolbar class="gnok-navbar" xmlns="http://www.w3.org/1999/html">
+  <div [routerLink]="['/home']" class="with-icon">
+    <mat-icon inline="true">restaurant_menu</mat-icon>
+    &nbsp;
+    <span>{{appName}}</span>
+
+  </div>
+  <span class="flex"></span>
+  <span>
+    <button [routerLink]="['/signIn']" mat-stroked-button class="quizzine-button">
+    <mat-icon>person_outline</mat-icon>
+      connexion
+    </button>
+
+  </span>
+
+</mat-toolbar>

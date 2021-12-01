@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
-import {Observable} from "rxjs";
-import {defaultIfEmpty, filter, map} from "rxjs/operators";
+import {config, Observable} from "rxjs";
+import {defaultIfEmpty, filter, map, tap} from "rxjs/operators";
 import {Question} from "../types/question.type";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
@@ -26,7 +26,7 @@ export class QuestionsService {
     }
 
     // @ts-ignore
-    Object.keys(environment.backend.endpointsUser).forEach(k =>this._backendURL[k] = `${baseUrl}${environment.backend.endpointsUser[k]}`);
+    Object.keys(environment.backend.endpoints).forEach(k =>this._backendURL[k] = `${baseUrl}${environment.backend.endpoints[k]}`);
 
   }
 
@@ -43,6 +43,7 @@ export class QuestionsService {
     return this._http.get<Question[]>(this._backendURL.allQuestions)
       .pipe(
         filter((questions: Question[]) => !!questions),
+        tap( (_:Question[]) => _.map( (__:Question) => console.log(__))),
         defaultIfEmpty([] as Question[])
       );
   }

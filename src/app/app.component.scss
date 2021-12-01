@@ -1,28 +1,8 @@
-mat-toolbar.gnok-navbar {
-  background-color: var(--primary-bg-color);
-  color: var(--primary-color);
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
-  width: 100%;
-  vertical-align: middle;
+.bougedela{
+  margin : 0% 20%;
 }
 
-mat-toolbar {
-  .flex {
-    flex: 1 1 auto;
-  }
+.margin{
+  margin-left: 10%;
+  margin-right: 10%;
 }
-
-.with-icon {
-  display: flex;
-  align-items: center;
-  font-size: 30px;
-}
-
-.quizzine-button {
-  background-color: var(--primary-color);
-  color: white;
-  border-radius: 15px;
-  border-style: none;
-  height: 40px;
-}
-

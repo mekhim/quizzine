@@ -1,9 +1,4 @@
-$primary-color : #F2BC79;
-
-:root{
-  --primary-bg-color: white;
-  --primary-color: #ffc500;
-}
+@import "vars";
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif }

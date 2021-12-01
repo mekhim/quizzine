@@ -6,6 +6,7 @@ import {FormLoginComponent} from "./shared/form-login/form-login.component";
 import {FormComponent} from "./shared/form/form.component";
 
 const routes: Routes = [
+  {path: '', redirectTo: 'home', pathMatch:'full'},
   {path: 'home', component: HomeComponent},
   {path: 'question', component: QuestionComponent},
   {path: 'signIn', component: FormLoginComponent},
