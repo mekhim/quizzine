@@ -70,6 +70,6 @@ export class FormComponent implements OnInit {
   }
 
   submit(user: User): void {
-    this.submit$.emit(user);
+    this.submit$.emit({...user, confirmPassword:undefined});
   }
 }

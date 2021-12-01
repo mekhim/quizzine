@@ -17,12 +17,12 @@
       <tr>
         <td>
           <mat-form-field class="" [class.mgb15]="formL.get('password')?.dirty && formL.get('password')?.invalid">
-          <input type="password" matInput placeholder="Password" formControlName="password" minlength="2" required name="password">
+          <input type="password" matInput placeholder="Password" formControlName="password" minlength="8" required name="password">
             <mat-error *ngIf="formL.get('password')?.dirty && formL.get('password')?.hasError('required') ">
               Password is <strong>required</strong>
             </mat-error>
             <mat-error *ngIf="formL.get('password')?.dirty && formL.get('password')?.hasError('minlength') ">
-              Password is <strong>2 chars min</strong>
+              Password is <strong>8 chars min</strong>
             </mat-error>
           </mat-form-field>
         </td>

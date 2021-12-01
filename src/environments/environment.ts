@@ -12,7 +12,9 @@ export const environment = {
       allUsers: '/users',
       oneUser: '/users/:id',
       allQuestions: '/questions',
-      oneQuestion: '/questions/:id'
+      oneQuestion: '/questions/:id',
+      register: '/auth/register',
+      login: '/auth/login'
     }
   }
 };

@@ -50,7 +50,7 @@ export class UsersService {
 
 
   /**
-   * Function to return one question for current id
+   * Function to return one user for current id
    */
   fetchOne(id: string): Observable<User> {
     return this._http.get<User>(this._backendURL.oneUser.replace(':id',id));

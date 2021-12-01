@@ -1,10 +1,16 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UsersService} from "../shared/services/users.service";
 import {User} from "../shared/types/user.type";
+import {HandlerLoginType} from "../shared/types/handlerLogin-type";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {DialogComponent} from "../shared/dialog/dialog.component";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {DialogLoginComponent} from "../dialog-login/dialog-login.component";
+import {filter, map, mergeMap} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {AuthService} from "../shared/services/auth.service";
+import {HttpEvent} from "@angular/common/http";
+import {LoginResponse} from "../shared/types/login-response.interface";
 
 @Component({
   selector: 'quizzine-navbar',
@@ -12,22 +18,21 @@ import {DialogLoginComponent} from "../dialog-login/dialog-login.component";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  private _users: User[];
+  private _handlerLogin: HandlerLoginType[];
   private _submit$: EventEmitter<User>;
   private readonly _form: FormGroup;
   private _dialogStatus: string;
-  private _userDialog: MatDialogRef<DialogLoginComponent, User> | undefined;
+  private _userDialog: MatDialogRef<DialogLoginComponent, HandlerLoginType> | undefined;
 
 
-  constructor(private _usersService: UsersService, private _dialog: MatDialog) {
+  constructor(private _authService: AuthService, private _dialog: MatDialog) {
     this._submit$ = new EventEmitter<User>();
-    this._users = [];
+    this._handlerLogin = [];
     this._form = this._buildForm();
     this._dialogStatus = 'inactive';
   }
 
   ngOnInit(): void {
-    this._usersService.fetch().subscribe({next: (users: User[]) => this._users = users})
   }
 
   get form(): FormGroup {
@@ -70,5 +75,26 @@ export class NavbarComponent implements OnInit {
       width: '500px',
       disableClose: true
     });
+
+    this._userDialog.afterClosed()
+      .pipe(
+        filter( (user: HandlerLoginType|undefined) => !!user),
+    map((user: HandlerLoginType|undefined) => {
+      return user;
+    }),
+      mergeMap((handlerLogin: HandlerLoginType|undefined) => this._login(handlerLogin?.username, handlerLogin?.password))
+    ).subscribe( {
+      next: (token: LoginResponse ) => {
+        window.sessionStorage.setItem('auth-token', token.access_token);
+        window.sessionStorage.setItem('userId', token.userId);
+      },
+      error: () => this._dialogStatus = 'inactive',
+      complete: () => this._dialogStatus = 'inactive'
+    });
+
   }
+
+  private _login(username: string | undefined, password: string | undefined): Observable<LoginResponse> {
+        return this._authService.login(username, password);
+    }
 }

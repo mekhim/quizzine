@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { merge } from 'rxjs';
+import {merge, Observable} from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import {User} from "../shared/types/user.type";
 import {UsersService} from "../shared/services/users.service";
@@ -46,5 +46,9 @@ export class UserComponent implements OnInit {
           this._user = this._userService.defaultUser;
         }
       });
+  }
+
+  private _add(user:User |undefined): Observable<User>{
+    return this._userService.create(user as User);
   }
 }

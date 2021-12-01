@@ -3,6 +3,10 @@ import {User} from "../types/user.type";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {DialogComponent} from "../dialog/dialog.component";
+import {filter, map, mergeMap} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {UsersService} from "../services/users.service";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'quizzine-form-login',
@@ -16,8 +20,10 @@ export class FormLoginComponent implements OnInit {
   private readonly _submit$: EventEmitter<User>;
   private readonly _cancel$: EventEmitter<void>;
   private _model: User;
-  constructor(private _dialog: MatDialog) {
+  private _users: User[];
+  constructor(private _authService : AuthService,private _dialog: MatDialog) {
     this._model = {} as User;
+    this._users = [];
     this._formL = this._buildForm();
     this._submit$=new EventEmitter<User>();
     this._cancel$=new EventEmitter<void>();
@@ -68,12 +74,28 @@ export class FormLoginComponent implements OnInit {
 
   showDialog(): void {
     this.cancel();
-  this._dialogStatus = 'active';
+    this._dialogStatus = 'active';
 
-  this._userDialog = this._dialog.open(DialogComponent, {
-    width: '500px',
-    disableClose: true
-  });
+    this._userDialog = this._dialog.open(DialogComponent, {
+      width: '500px',
+      disableClose: true
+    });
 
-}
+    this._userDialog.afterClosed().pipe(filter((user: User|undefined) => !!user),
+        map((user: User | undefined) => {
+          delete user?.confirmPassword;
+          return user;
+        }),
+        mergeMap((user: User| undefined) => this._register(user))
+      ).subscribe({
+        next:(user: User) => this._users = this._users.concat(user),
+        error: () => this._dialogStatus = 'inactive',
+        complete: () => this._dialogStatus = 'inactive'
+      });
+    }
+
+    private _register(user: User|undefined): Observable<User> {
+        return this._authService.register(user?.email, user?.username, user?.password);
+    }
+
 }
