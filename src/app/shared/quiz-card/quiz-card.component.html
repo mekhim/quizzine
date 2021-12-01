@@ -1,8 +1,13 @@
-<div class="tag">
-  <img mat-card-md-image src="{{ quiz.image }}">
-  <br>
-  <span>{{quiz.name}}</span>
-</div>
+<section >
+  <div class="tag" (click)="navigateToQuiz()">
+  <div>
+    <img mat-card-md-image src="{{ quiz.image }}">
+  </div>
+  <div>
+    <span class="text" >{{quiz.name}}</span>
+  </div>
+  </div>
+</section>
 
 
 

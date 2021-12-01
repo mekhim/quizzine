@@ -43,7 +43,6 @@ export class QuestionsService {
     return this._http.get<Question[]>(this._backendURL.allQuestions)
       .pipe(
         filter((questions: Question[]) => !!questions),
-        tap( (_:Question[]) => _.map( (__:Question) => console.log(__))),
         defaultIfEmpty([] as Question[])
       );
   }

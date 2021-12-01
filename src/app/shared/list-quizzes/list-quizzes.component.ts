@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Tag} from "../shared/types/tag.type";
-import {TagsService} from "../shared/services/tags.service";
+import {Tag} from "../types/tag.type";
+import {TagsService} from "../services/tags.service";
 
 @Component({
   selector: 'quizzine-list-quizzes',

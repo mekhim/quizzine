@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Tag} from "../types/tag.type";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'quizzine-quiz-card',
@@ -11,7 +12,7 @@ export class QuizCardComponent implements OnInit {
 
   private _quiz : Tag;
 
-  constructor() {
+  constructor(private _router: Router) {
     this._quiz = {} as Tag;
   }
 
@@ -30,5 +31,8 @@ export class QuizCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  navigateToQuiz() {
+    this._router.navigateByUrl("/quiz", { state: this._quiz });
+  }
 
 }

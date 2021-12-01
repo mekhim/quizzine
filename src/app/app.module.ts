@@ -14,7 +14,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { QuestionComponent } from './shared/question/question.component';
 import { HomeComponent } from './home/home.component';
 import { FormLoginComponent } from './shared/form-login/form-login.component';
-import { ListQuizzesComponent } from './quizzes/list-quizzes.component';
+import { ListQuizzesComponent } from './shared/list-quizzes/list-quizzes.component';
 import {HttpClientModule} from "@angular/common/http";
 import { DialogComponent } from './shared/dialog/dialog.component';
 import { UserComponent } from './user/user.component';
@@ -22,10 +22,13 @@ import {MatInputModule} from "@angular/material/input";
 import { QuizCardComponent } from './shared/quiz-card/quiz-card.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatGridListModule} from "@angular/material/grid-list";
+import { QuizComponent } from './quiz/quiz.component';
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [
-    AppComponent,NavbarComponent, FormComponent, QuestionComponent, HomeComponent, FormLoginComponent, ListQuizzesComponent, DialogComponent, UserComponent, QuizCardComponent
+    AppComponent,NavbarComponent, FormComponent, QuestionComponent, HomeComponent, FormLoginComponent, ListQuizzesComponent, DialogComponent, UserComponent, QuizCardComponent, QuizComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,9 @@ import {MatGridListModule} from "@angular/material/grid-list";
     ReactiveFormsModule,
     MatInputModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatStepperModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

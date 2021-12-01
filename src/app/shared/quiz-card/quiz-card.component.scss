@@ -2,17 +2,39 @@
 
 img {
   border-radius: 50%;
-  width: 33%;
-  height: 33%;
+  width: 40%;
+  height: 40%;
 }
 
 
-.tag{
-  font-size: 150%;
-  color: black;
-  text-align : center;
+.tag * {
+  padding: 0%;
+  :hover{
+    color: $primary-color;
+    cursor: pointer;
+  }
 
-  margin-top : 100px
+}
+
+
+.text{
+  color: black;
+  font-size: 150%;
+  background-color: white;
+  border-radius: 25px;
+}
+
+section {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  text-align : center;
+  margin-top : 100px;
+
+  padding: 0%;
+  margin-left : 10%;
+  margin-right : 10%;
 }
 
 

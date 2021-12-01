@@ -1,0 +1,28 @@
+<mat-stepper
+  class="stepper"
+  [orientation]="(stepperOrientation | async)!">
+  <div *ngFor="let question of questions; let i = index">
+    <mat-step  [stepControl]="formsGroup[i]" [editable]="false">
+      <form [formGroup]="formsGroup[i]">
+        <div class="div-question">
+          <label class="text">{{question.question}}</label>
+          <br>
+          <mat-radio-group formControlName="ctrl"
+            aria-labelledby="radio-group-label"
+            class="radio-group" required>
+            <mat-radio-button class="radio-button" *ngFor="let ans of question.answers">
+              {{ans}}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+  </div>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+
+  </mat-step>
+</mat-stepper>
