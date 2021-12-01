@@ -17,8 +17,8 @@
             <mat-error *ngIf="form.get('email')?.dirty && form.get('email')?.hasError('required')">
               Email is <strong>required</strong>
             </mat-error>
-            <mat-error *ngIf="form.get('email')?.dirty && !form.get('email')?.hasError('required') && form.get('email')?.hasError('googleEmail')">
-              Invalid email <strong>(ex: name.firstname@gmail.com)</strong>
+            <mat-error *ngIf="form.get('email')?.dirty && !form.get('email')?.hasError('required') && form.get('email')?.hasError('formatEmail')">
+              Invalid email <strong>(ex: name.firstname@sfr.fr)</strong>
             </mat-error>
           </mat-form-field>
         </td>
@@ -52,7 +52,7 @@
       <tr>
         <td>
           <mat-form-field class="" [class.mgb15]="form.get('confirmPassword')?.dirty && form.get('confirmPassword')?.invalid">
-            <input type="password" matInput placeholder="ConfirmPassword" formControlName="confirmPassword" minlength="8" required name="confirmPassword" />
+            <input type="password" matInput placeholder="ConfirmPassword" formControlName="confirmPassword" minlength="8" required name="confirmPassword"/>
             <mat-error *ngIf="form.get('confirmPassword')?.dirty && form.get('confirmPassword')?.hasError('confirmPassword')">
               ConfirmPassword is <strong>required</strong>
             </mat-error>

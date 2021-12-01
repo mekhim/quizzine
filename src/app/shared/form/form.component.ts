@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CustomValidators} from "./custom_validators";
 import {User} from "../types/user.type";
-import {DialogComponent} from "../dialog/dialog.component";
 
 @Component({
   selector: 'quizzine-form',
@@ -57,12 +56,14 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
   }
   private _buildForm(): FormGroup {
-    return new FormGroup( {
-      email: new FormControl('', Validators.compose([Validators.required, CustomValidators.googleEmail])),
-      username: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
-      password: new FormControl('', Validators.compose([Validators.required,Validators.minLength(8)])),
-      confirmPassword: new FormControl('', Validators.compose([Validators.required,Validators.minLength(8)])),
-    })
+    let samePass;
+    return new FormGroup({
+        email: new FormControl('', Validators.compose([Validators.required, CustomValidators.formatEmail])),
+        username: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
+        password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(8)])),
+        confirmPassword: new FormControl('', Validators.compose([Validators.required, Validators.minLength(8)])),
+      },
+    )
   }
 
   cancel(): void{

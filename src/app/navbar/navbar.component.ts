@@ -11,6 +11,7 @@ import {Observable} from "rxjs";
 import {AuthService} from "../shared/services/auth.service";
 import {HttpEvent} from "@angular/common/http";
 import {LoginResponse} from "../shared/types/login-response.interface";
+import {UserComponent} from "../user/user.component";
 
 @Component({
   selector: 'quizzine-navbar',
@@ -23,16 +24,44 @@ export class NavbarComponent implements OnInit {
   private readonly _form: FormGroup;
   private _dialogStatus: string;
   private _userDialog: MatDialogRef<DialogLoginComponent, HandlerLoginType> | undefined;
+  _user: User;
+  private _isUpdateMode : boolean;
 
 
-  constructor(private _authService: AuthService, private _dialog: MatDialog) {
+
+  constructor(private _authService: AuthService, private _dialog: MatDialog, private _userService: UsersService) {
+    this._isUpdateMode = false;
     this._submit$ = new EventEmitter<User>();
     this._handlerLogin = [];
     this._form = this._buildForm();
     this._dialogStatus = 'inactive';
+    this._user = {} as User;
+  }
+
+  get isUpdateMode(): boolean{
+    return this._isUpdateMode;
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(record: any): void{
+    if (record.model && record.model.currentValue) {
+      this._user = record.model.currentValue;
+      this._isUpdateMode = true;
+    } else {
+      this._user = {
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        isAdmin: false
+      };
+      this._isUpdateMode = false;
+    }
+
+    // update form's values with model
+    this._form.patchValue(this._user);
   }
 
   get form(): FormGroup {
@@ -92,6 +121,15 @@ export class NavbarComponent implements OnInit {
       complete: () => this._dialogStatus = 'inactive'
     });
 
+  }
+
+  public isLogin():boolean{
+    return !!window.sessionStorage.getItem('userId');
+  }
+
+  public deconnexion():void{
+    window.sessionStorage.removeItem('auth-token');
+    window.sessionStorage.removeItem('userId');
   }
 
   private _login(username: string | undefined, password: string | undefined): Observable<LoginResponse> {

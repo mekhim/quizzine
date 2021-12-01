@@ -20,23 +20,25 @@ import { DialogComponent } from './shared/dialog/dialog.component';
 import { UserComponent } from './user/user.component';
 import {MatInputModule} from "@angular/material/input";
 import { DialogLoginComponent } from './dialog-login/dialog-login.component';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
     AppComponent,NavbarComponent, FormComponent, QuestionComponent, HomeComponent, FormLoginComponent, QuizzComponent, DialogComponent, UserComponent, DialogLoginComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatButtonModule,
-        MatDialogModule,
-        ReactiveFormsModule,
-        MatInputModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatMenuModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
