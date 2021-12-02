@@ -1,3 +1,4 @@
+<!--
 <mat-stepper
   class="stepper"
   [orientation]="(stepperOrientation | async)!">
@@ -26,3 +27,23 @@
 
   </mat-step>
 </mat-stepper>
+--->
+
+
+<div *ngIf="!isFinished">
+
+  <div *ngIf="actualQuestion !== questions.length">
+    <mat-progress-bar mode="determinate" value="{{progressValue}}"></mat-progress-bar>
+    <div class="div-question">
+      <quizzine-question  (next)="next($event)" [question]="questions[actualQuestion]"></quizzine-question>
+    </div>
+  </div>
+
+  <div *ngIf="actualQuestion === questions.length">
+    <mat-spinner class="spinner"></mat-spinner>
+  </div>
+</div>
+
+<div *ngIf="isFinished">
+  <quizzine-results [totalAnswers]="questions.length" [goodAnswers]="goodAnswers"></quizzine-results>
+</div>

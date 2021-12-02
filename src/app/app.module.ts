@@ -14,8 +14,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { QuestionComponent } from './shared/question/question.component';
 import { HomeComponent } from './home/home.component';
 import { FormLoginComponent } from './shared/form-login/form-login.component';
-import { ListQuizzesComponent } from './shared/list-quizzes/list-quizzes.component';
-import {HttpClientModule} from "@angular/common/http";
+import { ListQuizzesComponent } from './list-quizzes/list-quizzes.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { DialogComponent } from './shared/dialog/dialog.component';
 import { UserComponent } from './user/user.component';
 import {MatInputModule} from "@angular/material/input";
@@ -25,10 +25,17 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import { QuizComponent } from './quiz/quiz.component';
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatRadioModule} from "@angular/material/radio";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { ResultsComponent } from './results/results.component';
+import {Interceptor} from "./interceptors/Interceptor";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {PluralPipe} from "./shared/pipes/plural.pipe";
+import { WrongRouteComponent } from './wrongroute/wrong-route.component';
 
 @NgModule({
   declarations: [
-    AppComponent,NavbarComponent, FormComponent, QuestionComponent, HomeComponent, FormLoginComponent, ListQuizzesComponent, DialogComponent, UserComponent, QuizCardComponent, QuizComponent
+    AppComponent,NavbarComponent, FormComponent, QuestionComponent, HomeComponent, FormLoginComponent, ListQuizzesComponent, DialogComponent, UserComponent, QuizCardComponent, QuizComponent, ResultsComponent,    PluralPipe, WrongRouteComponent
+
   ],
   imports: [
     BrowserModule,
@@ -44,9 +51,13 @@ import {MatRadioModule} from "@angular/material/radio";
     MatCardModule,
     MatGridListModule,
     MatStepperModule,
-    MatRadioModule
+    MatRadioModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

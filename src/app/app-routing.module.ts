@@ -5,6 +5,7 @@ import {HomeComponent} from "./home/home.component";
 import {FormLoginComponent} from "./shared/form-login/form-login.component";
 import {FormComponent} from "./shared/form/form.component";
 import {QuizComponent} from "./quiz/quiz.component";
+import {WrongRouteComponent} from "./wrongroute/wrong-route.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch:'full'},
@@ -12,7 +13,10 @@ const routes: Routes = [
   {path: 'quiz', component: QuizComponent},
   {path: 'question', component: QuestionComponent},
   {path: 'signIn', component: FormLoginComponent},
-  {path: 'signUp', component: FormComponent}
+  {path: 'signUp', component: FormComponent},
+
+  //Wrong route
+  { path: '**', component: WrongRouteComponent},
 ];
 
 @NgModule({

@@ -1,0 +1,25 @@
+@import "../../vars";
+
+.text {
+  font-size: 30px;
+  justify-content: center;
+  text-align : center;
+  margin-top : 200px;
+  .goodAnswers{
+    color: green;
+  }
+  .badAnswers{
+    color: red;
+  }
+  .totalAnswers{
+    color: $primary-color;
+  }
+}
+
+.quizzine-button {
+  background-color: $primary-color;
+  color: white;
+  border-radius: 15px;
+  border-style: none;
+  height: 40px;
+}

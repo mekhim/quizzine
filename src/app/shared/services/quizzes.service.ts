@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import {Question} from "../types/question.type";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
+import {Observable} from "rxjs";
+import {defaultIfEmpty, filter} from "rxjs/operators";
+import {User} from "../types/user.type";
+import {QuestionResponse} from "../types/questionResponse.type";
 
 @Injectable({
   providedIn: 'root'
@@ -29,4 +33,36 @@ export class QuizzesService {
 
   }
 
+  /**
+   * Function to return list of question
+   */
+  getQuiz(quizSize : number, tags : string[]): Observable<Question[]> {
+    return this._http.get<Question[]>(this._backendURL.quizzes + "?quizSize="+quizSize + this.tagsArrayToParams(tags))
+      .pipe(
+        filter((questions: Question[]) => !!questions),
+        defaultIfEmpty([] as Question[])
+      );
+  }
+
+  tagsArrayToParams(tags : string[]) : string {
+    let str = "";
+    for (let i = 0; i < tags.length; i++) {
+        str = "&" + "tags=" + tags[i];
+    }
+    return str;
+  }
+
+  /**
+   * Function to create a new question
+   */
+  postQuiz(userId : string, questions: QuestionResponse[]): Observable<any> {
+    return this._http.post<number[]>(this._backendURL.quizzes, {userId, questions}, this._options());
+  }
+
+  /**
+   * Function to return request options
+   */
+  private _options(headerList: object = {}): any {
+    return { headers: new HttpHeaders(Object.assign({ 'Content-Type': 'application/json' }, headerList)) };
+  }
 }

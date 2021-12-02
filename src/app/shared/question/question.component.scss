@@ -1,0 +1,9 @@
+@import "../../../vars";
+
+.answers{
+  margin-top: 10px;
+  :hover{
+    color: $primary-color;
+    cursor: pointer;
+  }
+}

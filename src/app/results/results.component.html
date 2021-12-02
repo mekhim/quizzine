@@ -1,0 +1,12 @@
+<div class="text">
+  <div class="goodAnswers">{{goodAnswers}} {{'bonne' | pl:goodAnswers > 1}} {{'réponse' | pl:goodAnswers > 1}}</div>
+  <br>
+  <div class="badAnswers">{{totalAnswers - goodAnswers}} {{'mauvaise' | pl:totalAnswers-goodAnswers > 1}} {{'réponse' | pl:totalAnswers - goodAnswers > 1}}</div>
+  <br>
+  <div class="totalAnswers">{{totalAnswers}} {{'réponse' | pl:totalAnswers > 1}} au total</div>
+  <br>
+  <br>
+
+  <button class="quizzine-button" mat-stroked-button [routerLink]="['/home']">Retour à l'accueil</button>
+
+</div>

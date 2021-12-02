@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {Observable} from "rxjs";
-import {StepperOrientation} from "@angular/material/stepper";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {BreakpointObserver} from "@angular/cdk/layout";
-import {map} from "rxjs/operators";
+import {Component, Input, OnInit} from '@angular/core';
 import {Question} from "../shared/types/question.type";
-import {ActivatedRoute, Router} from "@angular/router";
+import { Router} from "@angular/router";
 import {QuestionsService} from "../shared/services/questions.service";
+import {QuestionResponse} from "../shared/types/questionResponse.type";
+import {QuizzesService} from "../shared/services/quizzes.service";
+import {StorageService} from "../shared/services/storage.service";
 
 @Component({
   selector: 'quizzine-quiz',
@@ -14,44 +12,93 @@ import {QuestionsService} from "../shared/services/questions.service";
   styleUrls: ['./quiz.component.scss']
 })
 export class QuizComponent implements OnInit {
-  get formsGroup(): any {
-    return this._formsGroup;
+  set isFinished(value: boolean) {
+    this._isFinished = value;
+  }
+  get goodAnswers(): number {
+    return this._goodAnswers;
   }
 
+  set goodAnswers(value: number) {
+    this._goodAnswers = value;
+  }
+  get tags(): string[] {
+    return this._tags;
+  }
 
-  private _formsGroup : FormGroup[];
+  @Input()
+  set tags(value: string[]) {
+    this._tags = value;
+  }
 
+  get actualQuestion(): number {
+    return this._actualQuestion;
+  }
+
+  set actualQuestion(value: number) {
+    this._actualQuestion = value;
+  }
+
+  private _isFinished : boolean;
+
+  private _tags : string[];
 
   private _questions : Question[];
 
-  stepperOrientation: Observable<StepperOrientation>;
+  private _answers : QuestionResponse[];
 
-  constructor(private _questionsService : QuestionsService,private _router: Router ,private _activatedroute: ActivatedRoute, private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver) {
-    this.stepperOrientation = breakpointObserver
-      .observe('(min-width: 800px)')
-      .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
+  private _goodAnswers : number;
+
+  private _actualQuestion : number;
+
+  constructor(private _storageService : StorageService,private _quizzesService : QuizzesService,private _questionsService : QuestionsService,private _router: Router) {
 
     this._questions = [];
 
-    this._formsGroup = [];
+    this._tags = [];
 
+    this._actualQuestion = 0;
 
+    this._answers = [];
+
+    this._isFinished = false;
+
+    this._goodAnswers = 0;
   }
 
   ngOnInit(): void{
-    this._questionsService.fetch().subscribe( (_) => {
+    this._tags = this._storageService.tags;
+    this._quizzesService.getQuiz(this._storageService.quizSize ,this._tags).subscribe((_) => {
       this._questions = _;
-      for (let i = 0; i < this.questions.length; i++) {
-        //build Forms
-        this._formsGroup[i] = this._formBuilder.group({
-          ctrl: ['', Validators.required],
-        });
-      }
     })
   }
 
   get questions(): Question[] {
     return this._questions;
+  }
+
+  get progressValue() {
+    return this._questions.length !== 0 ? (this._actualQuestion/this._questions.length) * 100 : 0;
+  }
+
+  get isFinished()  {
+    return this._isFinished;
+  }
+
+  next( question : QuestionResponse){
+    if(this._actualQuestion < this._questions.length) {
+      this._answers[this._actualQuestion] = question;
+      this.actualQuestion++;
+    if(this._actualQuestion === this._questions.length) {
+      let userId = "61a7342542c47e5db40c28a2";//window.localStorage.getItem('userId');
+      if(userId !== null) {
+        this._quizzesService.postQuiz(userId, this._answers).subscribe((_: number[]) => {
+          this.goodAnswers = _.reduce((a,b) => a + b, 0)
+          this.isFinished = true;
+        });
+      }
+    }
+    }
   }
 
 }

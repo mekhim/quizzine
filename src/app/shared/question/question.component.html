@@ -1,1 +1,9 @@
+<h1 >{{question.question}}</h1>
+<br>
+
+<div class="answers" *ngFor="let answer of question.answers; let i = index">
+  <span (click)="next({questionId:question.id,answer: answer})" >{{i+1}}. {{answer}}</span>
+  <br>
+</div>
+
 

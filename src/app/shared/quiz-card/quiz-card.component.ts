@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Tag} from "../types/tag.type";
 import {Router} from "@angular/router";
+import {StorageService} from "../services/storage.service";
 
 @Component({
   selector: 'quizzine-quiz-card',
@@ -12,7 +13,7 @@ export class QuizCardComponent implements OnInit {
 
   private _quiz : Tag;
 
-  constructor(private _router: Router) {
+  constructor(private _router: Router, private _storageService : StorageService) {
     this._quiz = {} as Tag;
   }
 
@@ -32,7 +33,9 @@ export class QuizCardComponent implements OnInit {
   }
 
   navigateToQuiz() {
-    this._router.navigateByUrl("/quiz", { state: this._quiz });
+    this._storageService.tags = [];
+    this._storageService.tags.push(this._quiz.name);
+    this._router.navigate(['/quiz'])
   }
 
 }
