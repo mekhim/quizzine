@@ -8,8 +8,15 @@ import {Router} from "@angular/router";
 })
 export class HomeComponent implements OnInit {
 
+  /**
+   * Component Constructor
+   * @param _router
+   */
   constructor(private _router: Router) { }
 
+  /**
+   * OnInit implementation
+   */
   ngOnInit(): void {
   }
 

@@ -28,7 +28,12 @@ export class NavbarComponent implements OnInit {
   private _isUpdateMode : boolean;
 
 
-
+  /**
+   * Component constructor
+   * @param _authService
+   * @param _dialog
+   * @param _userService
+   */
   constructor(private _authService: AuthService, private _dialog: MatDialog, private _userService: UsersService) {
     this._isUpdateMode = false;
     this._submit$ = new EventEmitter<User>();
@@ -38,13 +43,23 @@ export class NavbarComponent implements OnInit {
     this._user = {} as User;
   }
 
+  /**
+   * Returns private property _isUpdateMode
+   */
   get isUpdateMode(): boolean{
     return this._isUpdateMode;
   }
 
+  /**
+   * OnInit implementation
+   */
   ngOnInit(): void {
   }
 
+  /**
+   * Function to handle component update
+   * @param record
+   */
   ngOnChanges(record: any): void{
     if (record.model && record.model.currentValue) {
       this._user = record.model.currentValue;
@@ -64,10 +79,16 @@ export class NavbarComponent implements OnInit {
     this._form.patchValue(this._user);
   }
 
+  /**
+   * Returns private property _form
+   */
   get form(): FormGroup {
     return this._form;
   }
 
+  /**
+   * Returns name of this App
+   */
   get appName(): string {
     return "Quizzine";
   }
@@ -80,11 +101,19 @@ export class NavbarComponent implements OnInit {
     return this._submit$;
   }
 
+  /**
+   * Function to emit event to submit form and user
+   * @param user
+   */
   submit(user: User): void {
     this._submit$.emit(user);
 
   }
 
+  /**
+   * Function to build our form
+   * @private
+   */
   private _buildForm(): FormGroup {
     return new FormGroup({
       username: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
@@ -114,7 +143,7 @@ export class NavbarComponent implements OnInit {
       mergeMap((handlerLogin: HandlerLoginType|undefined) => this._login(handlerLogin?.username, handlerLogin?.password))
     ).subscribe( {
       next: (token: LoginResponse ) => {
-        window.sessionStorage.setItem('auth-token', token.access_token);
+        window.sessionStorage.setItem('acces_token', token.access_token);
         window.sessionStorage.setItem('userId', token.userId);
       },
       error: () => this._dialogStatus = 'inactive',
@@ -123,15 +152,27 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  /**
+   * Function to know a user in connected
+   */
   public isLogin():boolean{
     return !!window.sessionStorage.getItem('userId');
   }
 
+  /**
+   * Function to disconnect a user
+   */
   public deconnexion():void{
-    window.sessionStorage.removeItem('auth-token');
+    window.sessionStorage.removeItem('access_token');
     window.sessionStorage.removeItem('userId');
   }
 
+  /**
+   * Function to connect a user
+   * @param username
+   * @param password
+   * @private
+   */
   private _login(username: string | undefined, password: string | undefined): Observable<LoginResponse> {
         return this._authService.login(username, password);
     }

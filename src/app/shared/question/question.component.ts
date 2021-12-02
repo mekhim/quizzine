@@ -13,10 +13,18 @@ import {merge} from "rxjs";
 export class QuestionComponent implements OnInit {
   private _question: Question[];
 
+  /**
+   * Component constructor
+   * @param _questionService
+   * @param _route
+   */
   constructor(private _questionService: QuestionsService, private _route: ActivatedRoute) {
     this._question = [];
   }
 
+  /**
+   * OnInit implementation
+   */
   ngOnInit(): void {
     this._questionService.fetch().subscribe({next: (question: Question[]) =>this._question = question});
   }

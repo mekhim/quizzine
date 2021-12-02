@@ -19,11 +19,11 @@ export class UserComponent implements OnInit {
     this._user = {} as User;
   }
 
-  // private property to store person value
+  // private property to store user value
   private _user: User;
 
   /**
-   * Returns private property _person
+   * Returns private property _user
    */
   get user(): User {
     return this._user;
@@ -46,9 +46,5 @@ export class UserComponent implements OnInit {
           this._user = this._userService.defaultUser;
         }
       });
-  }
-
-  private _add(user:User |undefined): Observable<User>{
-    return this._userService.create(user as User);
   }
 }

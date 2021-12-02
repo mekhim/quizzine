@@ -30,9 +30,11 @@ export class AuthService {
 
   }
 
+  /**
+   * Function to get the default user
+   */
   get defaultUser(): User {
     return this._defaultUser;
-
   }
 
 

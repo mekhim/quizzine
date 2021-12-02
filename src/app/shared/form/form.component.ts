@@ -16,6 +16,9 @@ export class FormComponent implements OnInit {
   private readonly _cancel$: EventEmitter<void>
   private readonly _submit$: EventEmitter<User>
 
+  /**
+   * Component constructor
+   */
   constructor() {
     this._model = {} as User;
     this._form = this._buildForm();
@@ -24,11 +27,18 @@ export class FormComponent implements OnInit {
     this._submit$ = new EventEmitter<User>();
   }
 
+  /**
+   * Sets private property _model
+   * @param model
+   */
   @Input()
   set model(model: User){
     this._model = model;
   }
 
+  /**
+   * Returns private property _model
+   */
   get model(): User{
     return this._model;
   }
@@ -42,17 +52,25 @@ export class FormComponent implements OnInit {
     return this._isUpdateMode;
   }
 
+  /**
+   * Returns private property _cancel$
+   */
   @Output('cancel')
   get cancel$(): EventEmitter<void>{
     return this._cancel$;
   }
 
+  /**
+   * Returns private property _submit$
+   */
   @Output('submit')
   get submit$(): EventEmitter<User>{
     return this._submit$;
   }
 
-
+  /**
+   * OnInit implementation
+   */
   ngOnInit(): void {
   }
   private _buildForm(): FormGroup {
@@ -66,10 +84,17 @@ export class FormComponent implements OnInit {
     )
   }
 
+  /**
+   * Function to emit event to cancel process
+   */
   cancel(): void{
     this._cancel$.emit();
   }
 
+  /**
+   * Function to emit event to submit form and user
+    * @param user
+   */
   submit(user: User): void {
     this.submit$.emit({...user, confirmPassword:undefined});
   }
