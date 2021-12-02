@@ -23,10 +23,6 @@ export class HomeComponent implements OnInit {
     this._tags = [];
   }
 
-  /**
-   * Component Constructor
-   * @param _router
-   */
   ngOnInit(): void {
     this._tagsService.fetch().subscribe(((_: Tag[]) => this.tags = _));
   }

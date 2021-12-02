@@ -12,6 +12,8 @@ import {StorageService} from "../shared/services/storage.service";
   styleUrls: ['./quiz.component.scss']
 })
 export class QuizComponent implements OnInit {
+
+
   set isFinished(value: boolean) {
     this._isFinished = value;
   }
@@ -40,16 +42,39 @@ export class QuizComponent implements OnInit {
     this._actualQuestion = value;
   }
 
+  /**
+   * define if the quiz is finished or not
+   * @private
+   */
   private _isFinished : boolean;
 
+  /**
+   * quiz' tags
+   */
   private _tags : string[];
 
+  /**
+   * questions
+   * @private
+   */
   private _questions : Question[];
 
+  /**
+   * user's answers
+   * @private
+   */
   private _answers : QuestionResponse[];
 
+  /**
+   * number of goodAnswers
+   * @private
+   */
   private _goodAnswers : number;
 
+  /**
+   * actual question
+   * @private
+   */
   private _actualQuestion : number;
 
   constructor(private _storageService : StorageService,private _quizzesService : QuizzesService,private _questionsService : QuestionsService,private _router: Router) {
@@ -78,6 +103,9 @@ export class QuizComponent implements OnInit {
     return this._questions;
   }
 
+  /**
+   * value of the progress bar
+   */
   get progressValue() {
     return this._questions.length !== 0 ? (this._actualQuestion/this._questions.length) * 100 : 0;
   }
@@ -86,14 +114,18 @@ export class QuizComponent implements OnInit {
     return this._isFinished;
   }
 
+  /**
+   * function called when the user answer a question
+   * @param question
+   */
   next( question : QuestionResponse){
     if(this._actualQuestion < this._questions.length) {
       this._answers[this._actualQuestion] = question;
       this.actualQuestion++;
     if(this._actualQuestion === this._questions.length) {
-      let userId = "61a7342542c47e5db40c28a2";//window.localStorage.getItem('userId');
+      let userId = window.sessionStorage.getItem('userId');
       if(userId !== null) {
-        this._quizzesService.postQuiz(userId, this._answers).subscribe((_: number[]) => {
+        this._quizzesService.postQuiz(<string>userId, this._answers).subscribe((_: number[]) => {
           this.goodAnswers = _.reduce((a,b) => a + b, 0)
           this.isFinished = true;
         });

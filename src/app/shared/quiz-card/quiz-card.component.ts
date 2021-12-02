@@ -32,6 +32,9 @@ export class QuizCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * go to quiz
+   */
   navigateToQuiz() {
     this._storageService.tags = [];
     this._storageService.tags.push(this._quiz.name);

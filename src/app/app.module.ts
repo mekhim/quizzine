@@ -17,7 +17,6 @@ import { FormLoginComponent } from './shared/form-login/form-login.component';
 import { ListQuizzesComponent } from './list-quizzes/list-quizzes.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { DialogComponent } from './shared/dialog/dialog.component';
-import { UserComponent } from './user/user.component';
 import {MatInputModule} from "@angular/material/input";
 import { QuizCardComponent } from './shared/quiz-card/quiz-card.component';
 import {MatCardModule} from "@angular/material/card";
@@ -36,7 +35,7 @@ import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
-    AppComponent,NavbarComponent, FormComponent, QuestionComponent, HomeComponent, FormLoginComponent, DialogComponent, UserComponent, DialogLoginComponent,ListQuizzesComponent, DialogComponent, UserComponent, QuizCardComponent, QuizComponent, ResultsComponent,PluralPipe, WrongRouteComponent
+    AppComponent,NavbarComponent, FormComponent, QuestionComponent, HomeComponent, FormLoginComponent, DialogLoginComponent,ListQuizzesComponent, DialogComponent, QuizCardComponent, QuizComponent, ResultsComponent,PluralPipe, WrongRouteComponent
 
   ],
   imports: [

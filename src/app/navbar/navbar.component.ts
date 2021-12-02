@@ -3,15 +3,12 @@ import {UsersService} from "../shared/services/users.service";
 import {User} from "../shared/types/user.type";
 import {HandlerLoginType} from "../shared/types/handlerLogin-type";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {DialogComponent} from "../shared/dialog/dialog.component";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {DialogLoginComponent} from "../dialog-login/dialog-login.component";
 import {filter, map, mergeMap} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {AuthService} from "../shared/services/auth.service";
-import {HttpEvent} from "@angular/common/http";
 import {LoginResponse} from "../shared/types/login-response.interface";
-import {UserComponent} from "../user/user.component";
 import {Router} from "@angular/router";
 import {StorageService} from "../shared/services/storage.service";
 
@@ -25,6 +22,10 @@ export class NavbarComponent implements OnInit {
     return this._connectedUsername;
   }
 
+  /**
+   * change connected user
+   * @param value username
+   */
   set connectedUsername(value: string) {
     this._connectedUsername = value;
   }
@@ -189,6 +190,10 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  /**
+   * load connected user's username into connectedUsername
+   * @private
+   */
   private _loadUsername() {
     if(window.sessionStorage.getItem('userId') !== null) {
       this._userService.fetchOne(<string>window.sessionStorage.getItem('userId')).subscribe((_:User) => this._connectedUsername = _.username);

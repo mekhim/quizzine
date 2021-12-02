@@ -13,6 +13,9 @@ export class ListQuizzesComponent implements OnInit {
 
   private _tags : Tag[];
 
+  /**
+   * Component Constructor
+   */
   constructor() {
 
     this._tags = [];
