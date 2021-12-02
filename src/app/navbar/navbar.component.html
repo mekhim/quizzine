@@ -6,12 +6,20 @@
 
   </div>
   <span class="flex"></span>
-  <span>
-    <button [routerLink]="['/signIn']" mat-stroked-button class="quizzine-button">
+  <span *ngIf="!isLogin()">
+    <button (click)="showDialog()" mat-stroked-button class="quizzine-button">
     <mat-icon>person_outline</mat-icon>
       connexion
     </button>
 
+  </span>
+
+  <span *ngIf="isLogin()">
+    <button mat-button [matMenuTriggerFor]="menu">Parametres</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Options</button>
+      <button mat-menu-item (click)="deconnexion()" [routerLink]="['/home']">Deconnexion</button>
+</mat-menu>
   </span>
 
 </mat-toolbar>

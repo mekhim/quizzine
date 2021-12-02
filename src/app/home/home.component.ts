@@ -12,13 +12,21 @@ import {map} from "rxjs/operators";
 export class HomeComponent implements OnInit {
 
 
+
   private _tags : Tag[];
 
-
+  /**
+   * Component Constructor
+   * @param _router
+   */
   constructor(private _router: Router, private _tagsService : TagsService) {
     this._tags = [];
   }
 
+  /**
+   * Component Constructor
+   * @param _router
+   */
   ngOnInit(): void {
     this._tagsService.fetch().subscribe(((_: Tag[]) => this.tags = _));
   }

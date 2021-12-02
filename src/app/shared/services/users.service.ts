@@ -12,6 +12,7 @@ export class UsersService {
   private readonly _backendURL: any;
   private readonly _defaultUser: User;
 
+  //constructor
   constructor(private _http: HttpClient) {
     this._defaultUser = {
       username: 'Michel',
@@ -26,7 +27,7 @@ export class UsersService {
     }
 
     // @ts-ignore
-    Object.keys(environment.backend.endpointsUser).forEach(k =>this._backendURL[k] = `${baseUrl}${environment.backend.endpointsUser[k]}`);
+    Object.keys(environment.backend.endpoints).forEach(k =>this._backendURL[k] = `${baseUrl}${environment.backend.endpoints[k]}`);
 
   }
 
@@ -50,7 +51,7 @@ export class UsersService {
 
 
   /**
-   * Function to return one question for current id
+   * Function to return one user for current id
    */
   fetchOne(id: string): Observable<User> {
     return this._http.get<User>(this._backendURL.oneUser.replace(':id',id));
@@ -86,7 +87,5 @@ export class UsersService {
   private _options(headerList: object = {}): any {
     return { headers: new HttpHeaders(Object.assign({ 'Content-Type': 'application/json' }, headerList)) };
   }
-
-
 }
 

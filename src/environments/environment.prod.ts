@@ -12,6 +12,9 @@ export const environment = {
       allTags: '/tags',
       oneTag: '/tags/:name',
       quizzes:'/quizzes'
+      oneQuestion: '/questions/:id',
+      register: '/auth/register',
+      login: '/auth/login'
     }
 
   }

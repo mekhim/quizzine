@@ -13,14 +13,15 @@ export const environment = {
       oneUser: '/users/:id',
       allQuestions: '/questions',
       oneQuestion: '/questions/:id',
+      register: '/auth/register',
+      login: '/auth/login'
+      oneQuestion: '/questions/:id',
       allTags: '/tags',
       oneTag: '/tags/:name',
       quizzes:'/quizzes'
     }
-
   }
 };
-
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Question} from "../types/question.type";
 import {ActivatedRoute} from "@angular/router";
 import {QuestionsService} from "../services/questions.service";
@@ -28,11 +28,18 @@ export class QuestionComponent implements OnInit {
 
   private _question : Question;
 
+  /**
+   * Component constructor
+   * @param _route
+   */
   constructor(private _route: ActivatedRoute) {
     this._question = {} as Question;
     this._next$ = new EventEmitter<QuestionResponse>();
   }
 
+  /**
+   * OnInit implementation
+   */
   ngOnInit(): void {
   }
 

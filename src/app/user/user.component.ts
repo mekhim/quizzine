@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { merge } from 'rxjs';
+import {merge, Observable} from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import {User} from "../shared/types/user.type";
 import {UsersService} from "../shared/services/users.service";
@@ -7,7 +7,7 @@ import {filter, mergeMap} from "rxjs/operators";
 
 
 @Component({
-  selector: 'user',
+  selector: 'quizzine-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
@@ -19,11 +19,11 @@ export class UserComponent implements OnInit {
     this._user = {} as User;
   }
 
-  // private property to store person value
+  // private property to store user value
   private _user: User;
 
   /**
-   * Returns private property _person
+   * Returns private property _user
    */
   get user(): User {
     return this._user;

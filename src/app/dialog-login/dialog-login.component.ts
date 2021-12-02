@@ -1,14 +1,14 @@
-import { Component, Inject, OnInit, Optional } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {User} from '../types/user.type';
+import {Component, Inject, OnInit, Optional} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {User} from "../shared/types/user.type";
+import {DialogComponent} from "../shared/dialog/dialog.component";
 
 @Component({
-  selector: 'quizzine-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: [ './dialog.component.scss' ]
+  selector: 'quizzine-dialog-login',
+  templateUrl: './dialog-login.component.html',
+  styleUrls: ['./dialog-login.component.scss']
 })
-export class DialogComponent implements OnInit {
-
+export class DialogLoginComponent implements OnInit {
 
   /**
    * Component constructor
@@ -42,5 +42,5 @@ export class DialogComponent implements OnInit {
   onSave(user: User): void {
     this._dialogRef.close(user);
   }
-}
 
+}

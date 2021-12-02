@@ -31,10 +31,12 @@ import {Interceptor} from "./interceptors/Interceptor";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {PluralPipe} from "./shared/pipes/plural.pipe";
 import { WrongRouteComponent } from './wrongroute/wrong-route.component';
+import { DialogLoginComponent } from './dialog-login/dialog-login.component';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
-    AppComponent,NavbarComponent, FormComponent, QuestionComponent, HomeComponent, FormLoginComponent, ListQuizzesComponent, DialogComponent, UserComponent, QuizCardComponent, QuizComponent, ResultsComponent,    PluralPipe, WrongRouteComponent
+    AppComponent,NavbarComponent, FormComponent, QuestionComponent, HomeComponent, FormLoginComponent, DialogComponent, UserComponent, DialogLoginComponent,ListQuizzesComponent, DialogComponent, UserComponent, QuizCardComponent, QuizComponent, ResultsComponent,PluralPipe, WrongRouteComponent
 
   ],
   imports: [
@@ -48,6 +50,8 @@ import { WrongRouteComponent } from './wrongroute/wrong-route.component';
     MatDialogModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatMenuModule,
+    MatInputModule,
     MatCardModule,
     MatGridListModule,
     MatStepperModule,
@@ -55,6 +59,7 @@ import { WrongRouteComponent } from './wrongroute/wrong-route.component';
     MatProgressBarModule,
     MatProgressSpinnerModule,
   ],
+  providers: [],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
   ],

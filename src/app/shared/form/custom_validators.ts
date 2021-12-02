@@ -1,14 +1,14 @@
-import { AbstractControl, ValidationErrors } from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, ValidationErrors} from '@angular/forms';
 
 export class CustomValidators {
 
   /**
    * Function to control email with custom validator
    */
-  static googleEmail(control: AbstractControl): ValidationErrors | null {
+  static formatEmail(control: AbstractControl): ValidationErrors | null {
     // returns control
-    return /^\w+\.\w+@gmail\.com$/.test(control.value) ? null : {
-      googleEmail: true
+    return /^\w+\.\w+@\w+\.(?:com|fr)$/.test(control.value) ? null : {
+      formatEmail: true
     };
   }
 }

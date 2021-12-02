@@ -13,12 +13,12 @@
       <tr>
         <td>
           <mat-form-field class="" [class.mgb15]="form.get('email')?.dirty && form.get('email')?.invalid">
-            <input matInput placeholder="Email" formControlName="email" minlength="2" required name="email" />
+            <input type="email" matInput placeholder="Email" formControlName="email" minlength="2" required name="email" />
             <mat-error *ngIf="form.get('email')?.dirty && form.get('email')?.hasError('required')">
               Email is <strong>required</strong>
             </mat-error>
-            <mat-error *ngIf="form.get('email')?.dirty && form.get('email')?.hasError('minlength')">
-              Email is <strong>2 chars min</strong>
+            <mat-error *ngIf="form.get('email')?.dirty && !form.get('email')?.hasError('required') && form.get('email')?.hasError('formatEmail')">
+              Invalid email <strong>(ex: name.firstname@sfr.fr)</strong>
             </mat-error>
           </mat-form-field>
         </td>
@@ -39,12 +39,12 @@
       <tr>
         <td>
           <mat-form-field class="" [class.mgb15]="form.get('password')?.dirty && form.get('password')?.invalid">
-            <input matInput placeholder="Password" formControlName="password" minlength="2" required name="password" />
+            <input type="password" matInput placeholder="Password" formControlName="password" minlength="8" required name="password" />
             <mat-error *ngIf="form.get('password')?.dirty && form.get('password')?.hasError('password')">
               Password is <strong>required</strong>
             </mat-error>
             <mat-error *ngIf="form.get('password')?.dirty && form.get('password')?.hasError('minlength')">
-              Password is <strong>2 chars min</strong>
+              Password is <strong>8 chars min</strong>
             </mat-error>
           </mat-form-field>
         </td>
@@ -52,12 +52,12 @@
       <tr>
         <td>
           <mat-form-field class="" [class.mgb15]="form.get('confirmPassword')?.dirty && form.get('confirmPassword')?.invalid">
-            <input matInput placeholder="ConfirmPassword" formControlName="confirmPassword" minlength="2" required name="confirmPassword" />
+            <input type="password" matInput placeholder="ConfirmPassword" formControlName="confirmPassword" minlength="8" required name="confirmPassword"/>
             <mat-error *ngIf="form.get('confirmPassword')?.dirty && form.get('confirmPassword')?.hasError('confirmPassword')">
               ConfirmPassword is <strong>required</strong>
             </mat-error>
             <mat-error *ngIf="form.get('confirmPassword')?.dirty && form.get('confirmPassword')?.hasError('minlength')">
-              ConfirmPassword is <strong>2 chars min</strong>
+              ConfirmPassword is <strong>8 chars min</strong>
             </mat-error>
           </mat-form-field>
         </td>
@@ -68,6 +68,6 @@
 
 
 <mat-dialog-actions align="end">
-  <button mat-button type="button" (click)="cancel()">Cancel</button>
+  <button mat-button type="button" [routerLink]="['/home']" (click)="cancel()">Cancel</button>
   <button mat-button color="primary" type="submit" (click)="submit(form.value)" [disabled]="form.invalid">Save</button>
 </mat-dialog-actions>
