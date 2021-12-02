@@ -12,6 +12,8 @@ import {AuthService} from "../shared/services/auth.service";
 import {HttpEvent} from "@angular/common/http";
 import {LoginResponse} from "../shared/types/login-response.interface";
 import {UserComponent} from "../user/user.component";
+import {Router} from "@angular/router";
+import {StorageService} from "../shared/services/storage.service";
 
 @Component({
   selector: 'quizzine-navbar',
@@ -40,11 +42,13 @@ export class NavbarComponent implements OnInit {
 
   /**
    * Component constructor
+   * @param _storageService
    * @param _authService
    * @param _dialog
    * @param _userService
+   * @param _router
    */
-  constructor(private _authService: AuthService, private _dialog: MatDialog, private _userService: UsersService) {
+  constructor(private _storageService : StorageService,private _authService: AuthService, private _dialog: MatDialog, private _userService: UsersService, private _router: Router) {
     this._isUpdateMode = false;
     this._submit$ = new EventEmitter<User>();
     this._handlerLogin = [];
@@ -122,8 +126,6 @@ export class NavbarComponent implements OnInit {
 
   }
 
-
-
   /**
    * Function to build our form
    * @private
@@ -160,18 +162,12 @@ export class NavbarComponent implements OnInit {
         window.sessionStorage.setItem('access_token', token.access_token);
         window.sessionStorage.setItem('userId', token.userId);
         this._loadUsername();
+        window.location.reload(true);
       },
       error: () => this._dialogStatus = 'inactive',
       complete: () => this._dialogStatus = 'inactive'
     });
 
-  }
-
-  /**
-   * Function to know a user in connected
-   */
-  public isLogin():boolean{
-    return !!window.sessionStorage.getItem('userId');
   }
 
   /**
@@ -188,13 +184,19 @@ export class NavbarComponent implements OnInit {
   public deconnexion():void{
     window.sessionStorage.removeItem('access_token');
     window.sessionStorage.removeItem('userId');
+    window.location.reload(true);
     this._clearUsername();
+
   }
 
   private _loadUsername() {
     if(window.sessionStorage.getItem('userId') !== null) {
       this._userService.fetchOne(<string>window.sessionStorage.getItem('userId')).subscribe((_:User) => this._connectedUsername = _.username);
     }
+  }
+
+  isLogin(){
+    return this._storageService.isLogin();
   }
 
   private _clearUsername() {
@@ -210,4 +212,5 @@ export class NavbarComponent implements OnInit {
   private _login(username: string | undefined, password: string | undefined): Observable<LoginResponse> {
         return this._authService.login(username, password);
     }
+
 }

@@ -22,6 +22,7 @@ export class QuizComponent implements OnInit {
   set goodAnswers(value: number) {
     this._goodAnswers = value;
   }
+
   get tags(): string[] {
     return this._tags;
   }

@@ -32,4 +32,10 @@ export class StorageService {
     this._quizSize = value;
   }
 
+  /**
+   * Function to know a user in connected
+   */
+  public isLogin():boolean{
+    return !!window.sessionStorage.getItem('userId');
+  }
 }

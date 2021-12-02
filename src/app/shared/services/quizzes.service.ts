@@ -56,7 +56,7 @@ export class QuizzesService {
    * Function to create a new question
    */
   postQuiz(userId : string, questions: QuestionResponse[]): Observable<any> {
-    return this._http.post<number[]>(this._backendURL.quizzes, {userId, questions}, this._options());
+    return this._http.post<number[]>(this._backendURL.quizzes , {userId, questions}, this._options());
   }
 
   /**
