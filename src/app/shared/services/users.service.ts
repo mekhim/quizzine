@@ -81,8 +81,8 @@ export class UsersService {
   /**
    * Function to delete one question for current id
    */
-  delete(id: string): Observable<string> {
-    return this._http.delete(this._backendURL.oneUserId.replace(':id', id))
+  delete(id: string): Observable<any> {
+    return this._http.delete<User>(this._backendURL.delete.replace(':id', id))
       .pipe(
         map(() => id)
       );

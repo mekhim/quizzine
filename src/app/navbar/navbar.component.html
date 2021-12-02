@@ -18,6 +18,7 @@
     <button mat-button [matMenuTriggerFor]="menu">{{connectedUsername}}</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>Options</button>
+      <button mat-menu-item (click)="delete()">Supprimer compte</button>
       <button mat-menu-item (click)="deconnexion()" [routerLink]="['/home']">Deconnexion</button>
 </mat-menu>
   </span>

@@ -14,7 +14,8 @@ export const environment = {
       oneTag: '/tags/:name',
       quizzes:'/quizzes',
       register: '/auth/register',
-      login: '/auth/login'
+      login: '/auth/login',
+      delete: '/users/:id',
     }
 
   }

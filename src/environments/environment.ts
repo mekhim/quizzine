@@ -18,7 +18,8 @@ export const environment = {
       login: '/auth/login',
       allTags: '/tags',
       oneTag: '/tags/:name',
-      quizzes:'/quizzes'
+      quizzes:'/quizzes',
+      delete: '/users/:id',
     }
   }
 };

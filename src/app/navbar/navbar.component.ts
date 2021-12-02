@@ -175,6 +175,14 @@ export class NavbarComponent implements OnInit {
   }
 
   /**
+   * Function to delete a user account
+   */
+  delete() {
+    this._userService.delete(<string>window.sessionStorage.getItem('userId')).subscribe();
+    this.deconnexion();
+  }
+
+  /**
    * Function to disconnect a user
    */
   public deconnexion():void{

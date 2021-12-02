@@ -47,7 +47,7 @@ export class AuthService {
   }
 
   /**
-   * Function to register a new user
+   * Function to log a new user
    */
   login(username: string | undefined, password: string | undefined): Observable<any> {
     return this._http.post<LoginResponse>(this._backendURL.login, {username,password}, this._options());
