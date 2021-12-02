@@ -1,27 +1,78 @@
 # Quizzine
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.13.
+Quizzine est un site de quiz pour tester ses connaissances sur la cuisine et tout ce qui s'en rapproche.
+Réalisé en 6 jours dans le cadre de l'UE NWT à la fac de Nancy par :
 
-## Development server
+  - CHONÉ Maxime
+  - GADY Emanuel
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Fonctionnalités
 
-## Code scaffolding
+  - Créer un compte
+  - Se connecter
+  - Supprimer un compte
+ 
+  - Choisir un thème de quiz
+  - Repondre à un quiz sur qui traite d'un thème 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Informations complémentaires
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+  - Le mots de passes sont chiffrés via bcrypt
 
-## Running unit tests
+## Installation du projet et de ses outils 
+  [Prérequis] : Avoir la partie backend : https://github.com/mekhim/quizzine-back
+  
+## Dépendances 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
 
-## Running end-to-end tests
+     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+    
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Angular CLI: 12.2.13
+Node: 16.13.0 (Unsupported)
+Package Manager: yarn 1.22.15
+OS: linux x64
 
-## Further help
+Angular: 12.2.13
+... animations, cdk, cli, common, compiler, compiler-cli, core
+... forms, material, platform-browser, platform-browser-dynamic
+... router
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Package                         Version
+---------------------------------------------------------
+@angular-devkit/architect       0.1202.13
+@angular-devkit/build-angular   12.2.13
+@angular-devkit/core            12.2.13
+@angular-devkit/schematics      12.2.13
+@schematics/angular             12.2.13
+rxjs                            6.6.7
+typescript                      4.3.5
+
+
+```
+
+## Installation
+
+```bash
+ # Clone
+ $ git clone https://github.com/mekhim/quizzine
+  
+ $ cd quizzine
+  
+ $ yarn install
+ # Lance le projet 
+ $ ng serve
+  
+  ```
+  
+## Accessibilité 
+
+http://localhost:4200/home
+
