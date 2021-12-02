@@ -14,8 +14,7 @@ export const environment = {
       allQuestions: '/questions',
       oneQuestion: '/questions/:id',
       register: '/auth/register',
-      login: '/auth/login'
-      oneQuestion: '/questions/:id',
+      login: '/auth/login',
       allTags: '/tags',
       oneTag: '/tags/:name',
       quizzes:'/quizzes'

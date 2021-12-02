@@ -11,8 +11,7 @@ export const environment = {
       oneQuestion: '/questions/:id',
       allTags: '/tags',
       oneTag: '/tags/:name',
-      quizzes:'/quizzes'
-      oneQuestion: '/questions/:id',
+      quizzes:'/quizzes',
       register: '/auth/register',
       login: '/auth/login'
     }

@@ -59,7 +59,6 @@ import {MatMenuModule} from "@angular/material/menu";
     MatProgressBarModule,
     MatProgressSpinnerModule,
   ],
-  providers: [],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
   ],
