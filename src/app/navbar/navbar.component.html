@@ -15,7 +15,7 @@
   </span>
 
   <span *ngIf="isLogin()">
-    <button mat-button [matMenuTriggerFor]="menu">Parametres</button>
+    <button mat-button [matMenuTriggerFor]="menu">{{connectedUsername}}</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>Options</button>
       <button mat-menu-item (click)="deconnexion()" [routerLink]="['/home']">Deconnexion</button>

@@ -19,13 +19,23 @@ import {UserComponent} from "../user/user.component";
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  get connectedUsername(): string {
+    return this._connectedUsername;
+  }
+
+  set connectedUsername(value: string) {
+    this._connectedUsername = value;
+  }
   private _handlerLogin: HandlerLoginType[];
   private _submit$: EventEmitter<User>;
   private readonly _form: FormGroup;
   private _dialogStatus: string;
   private _userDialog: MatDialogRef<DialogLoginComponent, HandlerLoginType> | undefined;
-  _user: User;
+  private _user: User;
   private _isUpdateMode : boolean;
+
+  private _connectedUsername : string;
+
 
 
   /**
@@ -41,6 +51,7 @@ export class NavbarComponent implements OnInit {
     this._form = this._buildForm();
     this._dialogStatus = 'inactive';
     this._user = {} as User;
+    this._connectedUsername = "";
   }
 
   /**
@@ -54,6 +65,7 @@ export class NavbarComponent implements OnInit {
    * OnInit implementation
    */
   ngOnInit(): void {
+    this._loadUsername();
   }
 
   /**
@@ -110,6 +122,8 @@ export class NavbarComponent implements OnInit {
 
   }
 
+
+
   /**
    * Function to build our form
    * @private
@@ -145,6 +159,7 @@ export class NavbarComponent implements OnInit {
       next: (token: LoginResponse ) => {
         window.sessionStorage.setItem('access_token', token.access_token);
         window.sessionStorage.setItem('userId', token.userId);
+        this._loadUsername();
       },
       error: () => this._dialogStatus = 'inactive',
       complete: () => this._dialogStatus = 'inactive'
@@ -165,6 +180,17 @@ export class NavbarComponent implements OnInit {
   public deconnexion():void{
     window.sessionStorage.removeItem('access_token');
     window.sessionStorage.removeItem('userId');
+    this._clearUsername();
+  }
+
+  private _loadUsername() {
+    if(window.sessionStorage.getItem('userId') !== null) {
+      this._userService.fetchOne(<string>window.sessionStorage.getItem('userId')).subscribe((_:User) => this._connectedUsername = _.username);
+    }
+  }
+
+  private _clearUsername() {
+    this._connectedUsername = "";
   }
 
   /**

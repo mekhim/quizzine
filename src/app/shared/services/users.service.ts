@@ -54,7 +54,14 @@ export class UsersService {
    * Function to return one user for current id
    */
   fetchOne(id: string): Observable<User> {
-    return this._http.get<User>(this._backendURL.oneUser.replace(':id',id));
+    return this._http.get<User>(this._backendURL.oneUserId.replace(':id',id));
+  }
+
+  /**
+   * Function to return one user for current username
+   */
+  fetchOneByName(username: string): Observable<User> {
+    return this._http.get<User>(this._backendURL.oneUserName.replace(':username',username));
   }
 
   /**
@@ -68,14 +75,14 @@ export class UsersService {
    * Function to update one question
    */
   update(id: string, user: User): Observable<any> {
-    return this._http.put<User>(this._backendURL.oneUser.replace(':id', id), user, this._options());
+    return this._http.put<User>(this._backendURL.oneUserId.replace(':id', id), user, this._options());
   }
 
   /**
    * Function to delete one question for current id
    */
   delete(id: string): Observable<string> {
-    return this._http.delete(this._backendURL.oneUser.replace(':id', id))
+    return this._http.delete(this._backendURL.oneUserId.replace(':id', id))
       .pipe(
         map(() => id)
       );

@@ -10,7 +10,8 @@ export const environment = {
     port: '3000',
     endpoints: {
       allUsers: '/users',
-      oneUser: '/users/:id',
+      oneUserId: '/users/id/:id',
+      oneUserName: '/users/username/:username',
       allQuestions: '/questions',
       oneQuestion: '/questions/:id',
       register: '/auth/register',
