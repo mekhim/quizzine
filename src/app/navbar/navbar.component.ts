@@ -143,7 +143,7 @@ export class NavbarComponent implements OnInit {
       mergeMap((handlerLogin: HandlerLoginType|undefined) => this._login(handlerLogin?.username, handlerLogin?.password))
     ).subscribe( {
       next: (token: LoginResponse ) => {
-        window.sessionStorage.setItem('acces_token', token.access_token);
+        window.sessionStorage.setItem('access_token', token.access_token);
         window.sessionStorage.setItem('userId', token.userId);
       },
       error: () => this._dialogStatus = 'inactive',
